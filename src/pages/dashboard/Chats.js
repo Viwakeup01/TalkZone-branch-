@@ -4,7 +4,7 @@ import { Archive, ArchiveBox, CircleDashed, MagnifyingGlass } from 'phosphor-rea
 import {styled,useTheme} from "@mui/material/styles";
 import { faker } from '@faker-js/faker';
 import { ChatList } from '../../data';
-import { SimpleBarStyle } from '../../components/Scrollbar';
+import {SimpleBarStyle } from '../../components/Scrollbar.js';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -54,7 +54,7 @@ const ChatElement = ({id,name,img,msg,time,unread,online}) => {
       variant="dot"
       >
       
-      <Avatar src={faker.image.avatar()} />
+      <Avatar src={img} />
       </StyledBadge> : <Avatar src={faker.image.avatar()} />}
 
       <Stack spacing={0.6}>
@@ -146,11 +146,11 @@ const Chats = () => {
         </Stack>
         <Divider />
        </Stack>
-       <Stack spacing={2} direction="column" sx={{flexGrow:1,overflow:"scroll",height:"100%"}}>
-       <SimpleBarStyle timeout={600} clickOnTrack={false}>
+       <Stack spacing={3} direction="column" sx={{flexGrow:1,overflow:"scroll",height:"100%"}}>
+       <SimpleBarStyle timeout={500} clickOnTrack={false}>
 
        
-        <Stack spacing={2.6}>
+        <Stack spacing={2.5}>
         <Typography variant="subtitle2" sx={{color:"#676767"}}>
           Pinned Chats
         </Typography>
@@ -158,7 +158,9 @@ const Chats = () => {
           return <ChatElement {...el} />
          })}
         </Stack>
+        </SimpleBarStyle>
         
+        <SimpleBarStyle timeout={500} clickOnTrack={false}>
         <Stack spacing={2.6}>
         <Typography variant="subtitle2" sx={{color:"#676767"}}>
           All Chats
@@ -167,7 +169,9 @@ const Chats = () => {
           return <ChatElement {...el} />
          })}
         </Stack>
+
         </SimpleBarStyle>
+       
 
        </Stack>
         </Stack>
